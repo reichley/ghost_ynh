@@ -40,9 +40,9 @@ echo "Install dependencies..."
 #sudo apt-get install nodejs npm -y
 #sed -i '/sid/d' /etc/apt/sources.list
 
-sudo apt-get install curl
+sudo apt-get install --yes curl
 sudo su --shell /bin/bash --command "curl --silent --location https://deb.nodesource.com/setup_0.12 | bash -"
-sudo apt-get install nodejs
+sudo apt-get install --yes nodejs
 
 version=0.6.4
 echo "Downloading Ghost $version..."
