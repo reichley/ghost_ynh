@@ -40,9 +40,9 @@ echo "Install dependencies..."
 #sudo apt-get install nodejs npm -y
 #sed -i '/sid/d' /etc/apt/sources.list
 
-sudo apt-get install --yes curl
+sudo apt-get install -y curl
 sudo su --shell /bin/bash --command "curl --silent --location https://deb.nodesource.com/setup_0.12 | bash -"
-sudo apt-get install --yes nodejs
+sudo apt-get install -y nodejs
 
 version=0.6.4
 echo "Downloading Ghost $version..."
@@ -69,21 +69,21 @@ find $final_path -type d | grep "tests$" | xargs sudo rm -rf
 sudo rm -rf $final_path/ghost/node_modules/sqlite3/build
 sudo rm -rf $final_path/tmp
 
-echo "Patching sources to remove calls to googleapis..."
+#echo "Patching sources to remove calls to googleapis..."
 # patches to core
-sudo cp $final_path/ghost/core/server/views/user-error.hbs $final_path/ghost/core/server/views/user-error.hbs.orig
-sudo cp $final_path/ghost/core/server/views/default.hbs $final_path/ghost/core/server/views/default.hbs.orig
-sudo cp $final_path/ghost/core/client/assets/css/fonts.css $final_path/ghost/core/client/assets/css/fonts.css.orig
-sudo sed -i '/googleapis/c\    <link rel="stylesheet" type="text/css" href="{{asset "css/fonts.css" ghost="true"}}">' $final_path/ghost/core/server/views/user-error.hbs
-sudo sed -i '/googleapis/c\    <link rel="stylesheet" type="text/css" href="{{asset "css/fonts.css" ghost="true"}}">' $final_path/ghost/core/server/views/default.hbs
-sudo cp ../patches/core/fonts.css $final_path/ghost/core/client/assets/css
-sudo cp ../patches/core/*.woff $final_path/ghost/core/client/assets/fonts
+#sudo cp $final_path/ghost/core/server/views/user-error.hbs $final_path/ghost/core/server/views/user-error.hbs.orig
+#sudo cp $final_path/ghost/core/server/views/default.hbs $final_path/ghost/core/server/views/default.hbs.orig
+#sudo cp $final_path/ghost/core/client/assets/css/fonts.css $final_path/ghost/core/client/assets/css/fonts.css.orig
+#sudo sed -i '/googleapis/c\    <link rel="stylesheet" type="text/css" href="{{asset "css/fonts.css" ghost="true"}}">' $final_path/ghost/core/server/views/user-error.hbs
+#sudo sed -i '/googleapis/c\    <link rel="stylesheet" type="text/css" href="{{asset "css/fonts.css" ghost="true"}}">' $final_path/ghost/core/server/views/default.hbs
+#sudo cp ../patches/core/fonts.css $final_path/ghost/core/client/assets/css
+#sudo cp ../patches/core/*.woff $final_path/ghost/core/client/assets/fonts
 # patches to casper theme
-sudo cp $final_path/ghost/content/themes/casper/default.hbs $final_path/ghost/content/themes/casper/default.hbs.orig
-sudo cp $final_path/ghost/content/themes/casper/assets/css/fonts.css $final_path/ghost/content/themes/casper/assets/css/fonts.css.orig
-sudo sed -i '/googleapis/c\    <link rel="stylesheet" type="text/css" href="{{asset "css/fonts.css"}}">' $final_path/ghost/content/themes/casper/default.hbs
-sudo cp ../patches/theme/fonts.css $final_path/ghost/content/themes/casper/assets/css
-sudo cp ../patches/theme/*.woff $final_path/ghost/content/themes/casper/assets/fonts
+#sudo cp $final_path/ghost/content/themes/casper/default.hbs $final_path/ghost/content/themes/casper/default.hbs.orig
+#sudo cp $final_path/ghost/content/themes/casper/assets/css/fonts.css $final_path/ghost/content/themes/casper/assets/css/fonts.css.orig
+#sudo sed -i '/googleapis/c\    <link rel="stylesheet" type="text/css" href="{{asset "css/fonts.css"}}">' $final_path/ghost/content/themes/casper/default.hbs
+#sudo cp ../patches/theme/fonts.css $final_path/ghost/content/themes/casper/assets/css
+#sudo cp ../patches/theme/*.woff $final_path/ghost/content/themes/casper/assets/fonts
 
 echo "Setting up permissions"
 sudo chown -R ghostblog: $final_path/ghost
