@@ -33,12 +33,16 @@ fi
 
 echo "Install dependencies..."
 #sudo echo "deb http://ftp.debian.org/debian sid main" >> /etc/apt/sources.list
-sudo apt-get update
-curl -sL https://deb.nodesource.com/setup | sudo bash -
-sudo apt-get install -qq nodejs
+#sudo apt-get update
+#curl -sL https://deb.nodesource.com/setup | sudo bash -
+#sudo apt-get install -qq nodejs
 #sudo npm install -g ghost --production
 #sudo apt-get install nodejs npm -y
 #sed -i '/sid/d' /etc/apt/sources.list
+
+sudo apt-get install curl
+sudo su --shell /bin/bash --command "curl --silent --location https://deb.nodesource.com/setup_0.12 | bash -"
+sudo apt-get install nodejs
 
 version=0.6.4
 echo "Downloading Ghost $version..."
@@ -55,8 +59,8 @@ sudo cp -r ../tmp/ghost $final_path
 sudo chown -R ghostblog: $final_path
 
 echo "Installing Ghost with NPM..."
-#sudo su --shell /bin/bash --command "cd $final_path/ghost && npm install --production --registry http://registry.npmjs.eu" ghostblog
-sudo su --shell /bin/bash --command "cd $final_path/ghost && npm install --production --registry http://registry.npmjs.org" ghostblog
+#sudo su --shell /bin/bash --command "cd $final_path/ghost && npm install --production" ghostblog
+sudo su --shell /bin/bash --command "cd $final_path/ghost && npm install --production" ghostblog
 
 echo "Cleaning up install tree..."
 sudo rm -rf $final_path/.npm
