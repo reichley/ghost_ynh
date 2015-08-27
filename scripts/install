@@ -34,8 +34,10 @@ fi
 echo "Install dependencies..."
 #sudo echo "deb http://ftp.debian.org/debian sid main" >> /etc/apt/sources.list
 sudo apt-get update
-sudo apt-get install nodejs npm -y
-
+curl -sL https://deb.nodesource.com/setup | sudo bash -
+sudo apt-get install -qq nodejs
+#sudo npm install -g ghost --production
+#sudo apt-get install nodejs npm -y
 #sed -i '/sid/d' /etc/apt/sources.list
 
 version=0.6.4
