@@ -32,11 +32,11 @@ if [[ ! $? -eq 0 ]]; then
 fi
 
 echo "Install dependencies..."
-sudo echo "deb http://ftp.debian.org/debian sid main" >> /etc/apt/sources.list
+#sudo echo "deb http://ftp.debian.org/debian sid main" >> /etc/apt/sources.list
 sudo apt-get update
 sudo apt-get install nodejs npm -y
 
-sed -i '/sid/d' /etc/apt/sources.list
+#sed -i '/sid/d' /etc/apt/sources.list
 
 version=0.6.4
 echo "Downloading Ghost $version..."
